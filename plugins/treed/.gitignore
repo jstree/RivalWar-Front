@@ -1,0 +1,12 @@
+*.swp
+/demo/workflowy/bundle.js
+/node_modules
+/demo/tpl/demo-bundle.js
+/build
+*.swo
+.nfs*
+/demo/*/build.js
+/demo/*/build.css
+/demo/react.js
+/pages
+/demo/*/build.*

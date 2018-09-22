@@ -1,0 +1,23 @@
+
+.n_Collapse {
+  > .TreeItem_children {
+    display: none;
+    .list > & {
+      display: block;
+    }
+  }
+}
+
+.m_Collapser {
+  cursor: pointer;
+
+  &:after {
+    content: '+';
+  }
+
+  &-collapsed {
+    &:after {
+      content: '-';
+    }
+  }
+}

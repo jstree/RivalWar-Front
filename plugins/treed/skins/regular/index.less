@@ -1,0 +1,199 @@
+@import "../../lib/context-menu.less";
+@import "./mindmap.less";
+
+/** Rebase **/
+
+.m_RebaseDot {
+  background-color: transparent;
+  width: auto;
+  height: auto;
+  float: none;
+}
+
+.m_RebaseDot::before {
+  content: "\2022";
+  cursor: pointer;
+}
+
+.m_RebaseDot:hover {
+  background-color: #aaa;
+  border-radius: 10px;
+  line-height: 10px;
+  margin-top: 4px;
+  height: 10px;
+}
+
+.m_RebaseDot {
+  padding: 3px;
+  font-size: 25px;
+  line-height: 18px;
+  overflow: hidden;
+  margin: 0 0 0 5px;
+
+  .TreeItem-parent.n_Collapse > .TreeItem_head & {
+    font-size: 40px;
+    line-height: 14px;
+    margin-top: 0;
+    overflow: hidden;
+    color: #777;
+
+    margin-left: 3px;
+    margin-right: -1px;
+    height: 12px;
+    padding: 3px 2px;
+  }
+}
+
+/** Collapse **/
+
+.m_Collapser {
+  position: relative;
+  opacity: 0;
+  cursor: pointer;
+  width: 0;
+  height: 0;
+
+  .TreeItem-parent > .TreeItem_head:hover & {
+    opacity: 1;
+  }
+
+  &:after {
+    content: "-";
+    position: absolute;
+    top: -1px;
+    font-weight: bold;
+    font-family: monospace;
+    cursor: pointer;
+    font-size: 20px;
+    left: -14px;
+    width: 20px;
+  }
+
+  .TreeItem-parent > .TreeItem_head &-collapsed {
+    opacity: 1;
+  }
+
+  &-collapsed:after {
+    content: "+";
+  }
+}
+
+/** Root node **/
+
+.TreeItem-root {
+  > .TreeItem_head {
+    .m_RebaseDot,
+    .m_Collapser,
+    .m_Collapser:after {
+      display: none;
+    }
+
+    .TreeItem_body {
+      font-size: 30px;
+      padding-left: 5px;
+
+      .treed_body_rendered,
+      textarea,
+      .shadow {
+        padding-left :10px;
+        font-size: 30px;
+        border-radius: 10px;
+      }
+    }
+
+  }
+}
+
+/** body **/
+
+.TreeItem_body {
+  margin-left: 0px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+
+  .TreeItem_head:hover & {
+    background-color: #ccc;
+  }
+
+  .TreeItem-selected > .TreeItem_head & {
+    background-color: #CFF6FF;
+  }
+
+  .TreeItem-active > .TreeItem_head & {
+    background-color: #afc;
+  }
+
+  .TreeItem-editing > .TreeItem_head & {
+    background-color: white;
+    border-color: #ccc;
+  }
+
+}
+
+.TreeItem-selected > .TreeItem_children {
+  background-color: #E0F9FF;
+  border-radius: 10px;
+}
+
+.m_Done {
+  > .TreeItem_head .treed_body {
+    color: #777;
+    font-style: italic;
+  }
+}
+
+.treed_body_rendered {
+  border: none;
+  margin: 0;
+  display: block;
+  font-size: 16px;
+  min-height: 24px;
+  padding: 3px 7px;
+  font-family: sans-serif;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: transparent;
+
+  blockquote {
+    border-left: 5px solid #ccc;
+    padding-left: 10px;
+    margin: 10px 0;
+
+    > p:first-child {
+      margin-top: 0;
+    }
+    > p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.textarea-grow {
+  textarea,
+  .shadow {
+    &:extend(.treed_body_rendered);
+  }
+}
+
+/** PLUGIN done */
+
+// we're animating the collapse
+.n_Collapse {
+  > .TreeItem_children {
+    display: block;
+  }
+}
+
+.TreeItem_nochildren {
+  padding: 10px 50px;
+  text-align: center;
+  color: #555;
+}
+

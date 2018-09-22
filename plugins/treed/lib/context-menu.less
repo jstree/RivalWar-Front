@@ -1,0 +1,61 @@
+
+.ContextMenu {
+  font-family: sans-serif;
+  background-color: white;
+  position: fixed;
+  z-index: 10000000;
+
+  &_item {
+    position: relative;
+
+    & > &_title {
+      cursor: pointer;
+      padding: 5px 10px;
+      background-color: white;
+      padding-right: 60px;
+      white-space: nowrap;
+    }
+
+    &-disabled > &_title {
+      cursor: default;
+      color: #888;
+    }
+
+    &-selected > &_title {
+        background-color: #cef;
+    }
+
+    &_shortcut {
+      background-color: #eee;
+      border-radius: 2px;
+      padding: 1px 5px;
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      font-family: monospace;
+      box-shadow: 0 0 5px #aaa inset;
+      text-shadow: 1px 1px 3px #777;
+      color: #555;
+    }
+
+    &-parent > &_title::after {
+      content: '\25b8';
+      position: absolute;
+      right: 10px;
+      top: 3px;
+      color: #777;
+    }
+  }
+
+  &_body {
+    box-shadow: 0px 3px 7px rgb(145, 145, 145);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    margin-left: 3px;
+  }
+}
+
